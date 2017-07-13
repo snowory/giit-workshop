@@ -11,9 +11,6 @@ function KeyboardManager() {
     }
 }
 
-/**
- * 
- */
 KeyboardManager.prototype.init = function () {
     document.addEventListener("keydown", this.keyDown.bind(this));
     document.addEventListener("keyup", this.keyUp.bind(this));
@@ -47,7 +44,12 @@ KeyboardManager.prototype.keyUp = function (e) {
     }
 };
 
-
+/**
+ * Adds listener to a specific key event.
+ *
+ * @param {String} event - Name of event you want to subscribe to. Can be: spaceDown, spaceUp, leftArrowUp, leftArrowDown, rightArrowUp, rightArrowDown
+ * @param {function} callback - Function that is called every time specific key event is fired.
+ */
 KeyboardManager.prototype.subscribe = function (event, callback) {
     if (this.subsciption[event]) {
         this.subsciption[event].push(callback);
