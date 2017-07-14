@@ -1,7 +1,7 @@
 function KeyboardManager() {
     this.init();
 
-    this.subsciption = {
+    this.subscription = {
         "spaceDown": [],
         "leftArrowDown": [],
         "rightArrowDown": [],
@@ -51,8 +51,8 @@ KeyboardManager.prototype.keyUp = function (e) {
  * @param {function} callback - Function that is called every time specific key event is fired.
  */
 KeyboardManager.prototype.subscribe = function (event, callback) {
-    if (this.subsciption[event]) {
-        this.subsciption[event].push(callback);
+    if (this.subscription[event]) {
+        this.subscription[event].push(callback);
     }
     else {
         console.error("Event", "'" + event + "'", "is not available for subscription");
@@ -60,7 +60,7 @@ KeyboardManager.prototype.subscribe = function (event, callback) {
 };
 
 KeyboardManager.prototype.callListeners = function (event) {
-    this.subsciption[event].forEach(function (cb) {
+    this.subscription[event].forEach(function (cb) {
         if (cb) {
             cb();
         }
