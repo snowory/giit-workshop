@@ -14,7 +14,7 @@ window.onload = function () {
         renderer.animate(0);
 
 
-        /*// create new Pixi Sprite with Pixi Texture from Loader
+        // create new Pixi Sprite with Pixi Texture from Loader
         var cat = new PIXI.Sprite(loader.getTexture("img/cat.jpg"));
 
         //Set sprite scale
@@ -53,7 +53,7 @@ window.onload = function () {
         renderer.addToRenderLoop(cat);
 
         //Add sprite to UpdateLoop - sprites update() function will be called with dT parameter
-        renderer.addToUpdateLoop(cat);*/
+        renderer.addToUpdateLoop(cat);
 
         /**
          * Entry point of a game.
