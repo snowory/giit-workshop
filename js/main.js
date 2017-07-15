@@ -124,8 +124,20 @@ window.onload = function () {
 
         //Create update function: moving spaceship with defined speed by selected angle
         spaceship.update = function (dT) {
-
             if (bullet.isShooting) {
+                // detect collision
+                var enemies = enemyContainer.children;
+                for (var i = 0; i < enemies.length(); i++) {
+                    var enemy = enemyContainer.getChildAt(i);
+                    console.log(enemy.x);
+                    if ((bullet.position.x >= enemy.position.x)
+                        && (bullet.position.y >= enemy.position.y)
+                        && (bullet.position.x <= (enemy.position.x + enemy.x))
+                        && (bullet.position.y <= (enemy.position.y + enemy.y))) {
+                        enemy.visible = false;
+                    }
+                }
+
                 // dT - millisecond, 5ms == 0.005 sec
                 //Define moving object speed
                 var pixelsPerDt = 200;
@@ -135,7 +147,6 @@ window.onload = function () {
                 bullet.position.y -= speed;
             }
         };
-
 
         renderer.addToRenderLoop(spaceship);
         renderer.addToUpdateLoop(spaceship);
