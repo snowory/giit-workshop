@@ -2,7 +2,7 @@ window.onload = function () {
 
     window.loader = new Loader();
 
-    loader.preload(["img/cat.jpg"], function () {
+    loader.preload(["img/enemy1.png", "img/enemy.png"], function () {
 
         // creates renderer
         window.renderer = new Renderer();
@@ -13,21 +13,42 @@ window.onload = function () {
         // starts render loop
         renderer.animate(0);
 
-
         // create new Pixi Sprite with Pixi Texture from Loader
-        var cat = new PIXI.Sprite(loader.getTexture("img/cat.jpg"));
+        var enemyContainer = new PIXI.Container();
+
+        for (var i = 0; i < 13; i++) {
+          var enemy = new PIXI.Sprite(loader.getTexture("img/enemy.png"));
+          var enemy1 = new PIXI.Sprite(loader.getTexture("img/enemy1.png"));
+          var enemy2 = new PIXI.Sprite(loader.getTexture("img/enemy.png"));
+          var enemy3 = new PIXI.Sprite(loader.getTexture("img/enemy1.png"));
+          enemyContainer.addChild(enemy);
+          enemyContainer.addChild(enemy1);
+          enemyContainer.addChild(enemy2);
+          enemyContainer.addChild(enemy3);
+
+          enemy.scale.set(0.2);
+          enemy.position.set(i * 50, 0);
+
+          enemy1.scale.set(0.1);
+          enemy1.position.set(i * 50, 50);
+
+          enemy2.scale.set(0.2);
+          enemy2.position.set(i * 50, 110);
+
+          enemy3.scale.set(0.1);
+          enemy3.position.set(i * 50, 160);
+        }
+
 
         //Set sprite scale
-        cat.scale.set(0.3);
+        //enemy1.scale.set(0.1);
 
-        //Set sprite position: x=200 and y=200
-        cat.position.set(200, 200);
-
-        //Set sprite anchor: x=0.5 and y=0.5
-        cat.anchor.set(0.5, 0.5);
+        //
+        // enemy1.position.set(200, 200);
+        // enemy1.anchor.set(0.5, 0.5);
 
         //Create update function: moving cat with defined speed by selected angle
-        cat.update = function (dT) {
+      enemyContainer.update = function (dT) {
             //Define moving object speed
             var speed = 5 / 1000 * dT;
 
@@ -41,19 +62,20 @@ window.onload = function () {
 
         //Subcribe to "leftArrowDown" event
         kMen.subscribe("leftArrowDown", function () {
-            cat.rotation -= 0.1;
+          enemy1.rotation -= 0.1;
         });
 
         //Subcribe to "rightArrowDown" event
         kMen.subscribe("rightArrowDown", function () {
-            cat.rotation += 0.1;
+          enemy1.rotation += 0.1;
         });
 
         //Add sprite to main stage - sprite becomes visible
-        renderer.addToRenderLoop(cat);
+        renderer.addToRenderLoop(enemyContainer);
 
         //Add sprite to UpdateLoop - sprites update() function will be called with dT parameter
-        renderer.addToUpdateLoop(cat);
+        renderer.addToUpdateLoop(enemyContainer);
+
 
         /**
          * Entry point of a game.
