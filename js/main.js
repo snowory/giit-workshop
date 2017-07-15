@@ -5,8 +5,6 @@ window.onload = function () {
     loader.preload(["img/spaceship.png", "img/shoot.png", "img/enemy1.png", "img/enemy.png"], function () {
 
 
-
-
        // creates renderer
         window.renderer = new Renderer();
 
@@ -73,27 +71,12 @@ window.onload = function () {
           enemy1.rotation += 0.1;
         });
 
-        //Add sprite to main stage - sprite becomes visible
-        renderer.addToRenderLoop(enemyContainer);
-
-        //Add sprite to UpdateLoop - sprites update() function will be called with dT parameter
-        renderer.addToUpdateLoop(enemyContainer);
-
         /**
          * Entry point of a game.
          *
          * Here you can add your game logic.
          *
          */
-
-                // creates renderer
-        window.renderer = new Renderer();
-
-        //creates keyboardManager
-        window.keyboardManager = new KeyboardManager();
-
-        // starts render loop
-        renderer.animate(0);
 
         // create new Pixi Sprite with Pixi Texture from Loader
         var spaceship = new PIXI.Sprite(loader.getTexture("img/spaceship.png"));
@@ -158,6 +141,8 @@ window.onload = function () {
         renderer.addToUpdateLoop(spaceship);
         renderer.addToRenderLoop(bullet);
         renderer.addToUpdateLoop(bullet);
+        renderer.addToRenderLoop(enemyContainer);
+        renderer.addToUpdateLoop(enemyContainer);
     });
 };
 
